@@ -36,7 +36,7 @@ export function RsvpSection() {
 
     setPinValidated(false);
     setFamilyMembers([]);
-    setPinError("PIN inválido. Para esta demonstração, use 0000.");
+    setPinError("Convite não encontrado. Verifique o PIN informado.");
   }
 
   function handleToggleMember(index: number, attending: boolean) {
@@ -95,13 +95,10 @@ export function RsvpSection() {
       <div className="section-container">
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <div style={{ textAlign: "center" }}>
-            <span className="badge-gold">RSVP</span>
+            <span className="badge-gold">Confirmação de Presença</span>
             <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", marginTop: 20 }}>
               Confirme sua presença
             </h2>
-            <p style={{ marginTop: 20, color: "#5f5651" }}>
-              Nesta versão demonstrativa, o único PIN válido é <strong>0000</strong>.
-            </p>
           </div>
 
           <div className="glass-card" style={{ marginTop: 40, borderRadius: 32, padding: 24 }}>
@@ -141,7 +138,7 @@ export function RsvpSection() {
                   }}
                 >
                   <p style={{ fontSize: 14, color: "#5f5651" }}>
-                    Ao enviar, a confirmação será salva pela API do projeto.
+                    Após confirmar, sua resposta será registrada.
                   </p>
 
                   <button

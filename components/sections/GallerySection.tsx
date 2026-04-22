@@ -13,25 +13,18 @@ export function GallerySection() {
           </h2>
         </div>
 
-        <div
-          style={{
-            marginTop: 48,
-            display: "grid",
-            gap: 20,
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          }}
-        >
+        <div className="gallery-grid" style={{ marginTop: 48 }}>
           {galleryImages.map((src, index) => (
             <div
               key={src}
-              style={{
-                position: "relative",
-                height: index % 2 === 0 ? 420 : 320,
-                overflow: "hidden",
-                borderRadius: 30,
-              }}
+              className={`gallery-card ${index % 2 === 0 ? "gallery-card-tall" : "gallery-card-medium"}`}
             >
-              <Image src={src} alt={`Foto ${index + 1}`} fill style={{ objectFit: "cover" }} />
+              <Image
+                src={src}
+                alt={`Foto ${index + 1}`}
+                fill
+                className="gallery-image"
+              />
             </div>
           ))}
         </div>

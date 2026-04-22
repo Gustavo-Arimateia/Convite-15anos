@@ -7,8 +7,9 @@ export const eventData = {
   timeText: "22:00",
   venue: "Imperatriz Festas & Eventos",
   address: "R. Duarte, 70 - Catalão, Divinópolis - MG, 35501-168",
-  message:
-    "Uma noite sonhada com carinho para celebrar beleza, afeto, gratidão e novos começos. Será uma alegria ter você conosco neste momento inesquecível.",
+  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=R.+Duarte,+70+-+Catal%C3%A3o,+Divin%C3%B3polis+-+MG,+35501-168",
+  wazeUrl: "https://waze.com/ul?q=R.%20Duarte,%2070%20-%20Catal%C3%A3o,%20Divin%C3%B3polis%20-%20MG,%2035501-168&navigate=yes",
+  message: "Uma noite sonhada com carinho para celebrar beleza, afeto, gratidão e novos começos. Será uma alegria ter você conosco neste momento inesquecível.",
   dressCodeTitle: "Elegância, delicadeza e brilho",
   dressCodeText:
     "Queremos que todos vivam esta noite em perfeita harmonia com o clima da celebração. Prefira looks elegantes, sofisticados e confortáveis.",
