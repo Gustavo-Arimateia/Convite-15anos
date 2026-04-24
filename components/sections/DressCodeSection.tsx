@@ -3,32 +3,28 @@ import { eventData } from "@/data/event";
 
 export function DressCodeSection() {
   return (
-    <section style={{ padding: "80px 0" }}>
+    <section className="dress-section">
       <div className="section-container">
-        <div
-          style={{
-            display: "grid",
-            gap: 40,
-            alignItems: "center",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          }}
-        >
-          <div>
+        <div className="dress-grid-v2">
+          <div className="dress-content-v2">
             <span className="badge-gold">Dress Code</span>
-            <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", marginTop: 20 }}>
-              {eventData.dressCodeTitle}
-            </h2>
-            <p style={{ marginTop: 24, fontSize: 18, lineHeight: 1.8, color: "#5f5651" }}>
-              {eventData.dressCodeText}
-            </p>
+            <h2 className="section-title">Elegância, delicadeza e brilho</h2>
+            <p className="dress-text-v2">{eventData.dressCodeText}</p>
+
+            <div className="dress-examples-v2">
+              <span className="dress-chip">Vestidos fluidos</span>
+              <span className="dress-chip">Tons suaves</span>
+              <span className="dress-chip">Social elegante</span>
+              <span className="dress-chip">Looks sofisticados</span>
+            </div>
           </div>
 
-          <div style={{ position: "relative", height: 420, overflow: "hidden", borderRadius: 32 }}>
+          <div className="dress-image-box-v2">
             <Image
               src="/foto-5.jpeg"
-              alt="Imagem de destaque"
+              alt="Inspiração de dress code"
               fill
-              style={{ objectFit: "cover" }}
+              className="dress-image-v2"
             />
           </div>
         </div>

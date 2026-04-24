@@ -5,17 +5,12 @@ import { demoFamily, demoPin } from "@/data/event";
 import { FamilyMember } from "@/types/rsvp";
 import { PinForm } from "@/components/rsvp/PinForm";
 import { FamilySelector } from "@/components/rsvp/FamilySelector";
-import { ContactForm } from "@/components/rsvp/ContactForm";
 
 export function RsvpSection() {
   const [pin, setPin] = useState("");
   const [pinValidated, setPinValidated] = useState(false);
   const [pinError, setPinError] = useState("");
   const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
-  const [contactName, setContactName] = useState("");
-  const [contactPhone, setContactPhone] = useState("");
-  const [contactEmail, setContactEmail] = useState("");
-  const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -59,10 +54,6 @@ export function RsvpSection() {
         },
         body: JSON.stringify({
           pin,
-          contactName,
-          contactPhone,
-          contactEmail,
-          notes,
           familyMembers,
         }),
       });
@@ -77,10 +68,6 @@ export function RsvpSection() {
       setPin("");
       setPinValidated(false);
       setFamilyMembers([]);
-      setContactName("");
-      setContactPhone("");
-      setContactEmail("");
-      setNotes("");
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Erro ao enviar confirmação.";
@@ -91,17 +78,15 @@ export function RsvpSection() {
   }
 
   return (
-    <section id="confirmacao" style={{ paddingBottom: 96 }}>
+    <section id="confirmacao" className="confirmation-section">
       <div className="section-container">
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <div style={{ textAlign: "center" }}>
+        <div className="confirmation-wrapper">
+          <div className="section-heading">
             <span className="badge-gold">Confirmação de Presença</span>
-            <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", marginTop: 20 }}>
-              Confirme sua presença
-            </h2>
+            <h2 className="section-title">Confirme sua presença</h2>
           </div>
 
-          <div className="glass-card" style={{ marginTop: 40, borderRadius: 32, padding: 24 }}>
+          <div className="confirmation-card glass-card">
             <PinForm
               pin={pin}
               pinError={pinError}
@@ -110,57 +95,25 @@ export function RsvpSection() {
             />
 
             {pinValidated && (
-              <form onSubmit={handleSubmit} style={{ marginTop: 32, display: "grid", gap: 32 }}>
+              <form onSubmit={handleSubmit} className="confirmation-form">
                 <FamilySelector
                   familyMembers={familyMembers}
                   attendingCount={attendingCount}
                   onToggle={handleToggleMember}
                 />
 
-                <ContactForm
-                  contactName={contactName}
-                  contactPhone={contactPhone}
-                  contactEmail={contactEmail}
-                  notes={notes}
-                  onChangeName={setContactName}
-                  onChangePhone={setContactPhone}
-                  onChangeEmail={setContactEmail}
-                  onChangeNotes={setNotes}
-                />
-
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 16,
-                    flexWrap: "wrap",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <p style={{ fontSize: 14, color: "#5f5651" }}>
-                    Após confirmar, sua resposta será registrada.
-                  </p>
-
+                <div className="confirmation-footer">
                   <button
                     type="submit"
                     disabled={loading}
-                    className="btn-primary"
-                    style={{ minWidth: 220, opacity: loading ? 0.7 : 1 }}
+                    className="btn-primary confirmation-submit-button"
                   >
                     {loading ? "Enviando..." : "Finalizar Confirmação"}
                   </button>
                 </div>
 
                 {successMessage && (
-                  <div
-                    style={{
-                      borderRadius: 16,
-                      border: "1px solid #bbf7d0",
-                      background: "#ecfdf5",
-                      color: "#047857",
-                      padding: "12px 16px",
-                    }}
-                  >
+                  <div className="confirmation-success">
                     {successMessage}
                   </div>
                 )}

@@ -7,17 +7,10 @@ type PinFormProps = {
 
 export function PinForm({ pin, pinError, onPinChange, onValidate }: PinFormProps) {
   return (
-    <div className="soft-border" style={{ borderRadius: 24, background: "white", padding: 24 }}>
-      <h3 style={{ fontSize: 28 }}>Identificação do convite</h3>
+    <div className="soft-border pin-form-card">
+      <h3 className="pin-form-title">Identificação do convite</h3>
 
-      <div
-        style={{
-          marginTop: 24,
-          display: "grid",
-          gap: 16,
-          gridTemplateColumns: "1fr auto",
-        }}
-      >
+      <div className="pin-form-grid">
         <input
           className="input-elegant"
           placeholder="Digite o PIN da família"
@@ -25,12 +18,12 @@ export function PinForm({ pin, pinError, onPinChange, onValidate }: PinFormProps
           onChange={(e) => onPinChange(e.target.value)}
         />
 
-        <button type="button" onClick={onValidate} className="btn-primary" style={{ minWidth: 170 }}>
+        <button type="button" onClick={onValidate} className="btn-primary pin-form-button">
           Buscar Convite
         </button>
       </div>
 
-      {pinError && <p style={{ marginTop: 16, fontSize: 14, color: "#dc2626" }}>{pinError}</p>}
+      {pinError && <p className="pin-form-error">{pinError}</p>}
     </div>
   );
 }

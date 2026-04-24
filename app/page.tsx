@@ -1,21 +1,25 @@
-import { HeroSection } from "@/components/sections/HeroSection";
-import { MessageSection } from "@/components/sections/MessageSection";
-import { DetailsSection } from "@/components/sections/DetailsSection";
+import { HeroVideoSection } from "@/components/sections/HeroVideoSection";
+import { StoryGallerySection } from "@/components/sections/StoryGallerySection";
+import { EventDetailsSection } from "@/components/sections/EventDetailsSection";
 import { DressCodeSection } from "@/components/sections/DressCodeSection";
-import { GallerySection } from "@/components/sections/GallerySection";
+import { LocationSection } from "@/components/sections/LocationSection";
+import { HighlightSection } from "@/components/sections/HighlightSection";
 import { InfoSection } from "@/components/sections/InfoSection";
 import { RsvpSection } from "@/components/sections/RsvpSection";
+import { ScrollTopButton } from "@/components/ui/ScrollTopButton";
 
 export default function HomePage() {
   return (
     <main>
-      <HeroSection />
-      <MessageSection />
-      <DetailsSection />
+      <HeroVideoSection />
+      <StoryGallerySection />
+      <EventDetailsSection />
       <DressCodeSection />
-      <GallerySection />
+      <LocationSection />
+      <HighlightSection />
       <InfoSection />
       <RsvpSection />
+      <ScrollTopButton />
     </main>
   );
 }

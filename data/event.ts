@@ -7,10 +7,14 @@ export const eventData = {
   timeText: "22:00",
   venue: "Imperatriz Festas & Eventos",
   address: "R. Duarte, 70 - Catalão, Divinópolis - MG, 35501-168",
-  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=R.+Duarte,+70+-+Catal%C3%A3o,+Divin%C3%B3polis+-+MG,+35501-168",
-  wazeUrl: "https://waze.com/ul?q=R.%20Duarte,%2070%20-%20Catal%C3%A3o,%20Divin%C3%B3polis%20-%20MG,%2035501-168&navigate=yes",
-  message: "Uma noite sonhada com carinho para celebrar beleza, afeto, gratidão e novos começos. Será uma alegria ter você conosco neste momento inesquecível.",
-  dressCodeTitle: "Elegância, delicadeza e brilho",
+  googleMapsUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=R.+Duarte,+70+-+Catal%C3%A3o,+Divin%C3%B3polis+-+MG,+35501-168",
+  wazeUrl:
+    "https://waze.com/ul?q=R.%20Duarte,%2070%20-%20Catal%C3%A3o,%20Divin%C3%B3polis%20-%20MG,%2035501-168&navigate=yes",
+  videoSrc: "/hero-video.mp4",
+  videoPoster: "/hero.jpeg",
+  message:
+    "Uma noite sonhada com carinho para celebrar beleza, afeto, gratidão e novos começos. Será uma alegria ter você conosco neste momento inesquecível.",
   dressCodeText:
     "Queremos que todos vivam esta noite em perfeita harmonia com o clima da celebração. Prefira looks elegantes, sofisticados e confortáveis.",
   infoItems: [
@@ -25,7 +29,7 @@ export const eventData = {
 export const demoPin = "0000";
 
 export const demoFamily: FamilyMember[] = [
-  { name: "Gustavo", attending: true },
-  { name: "Breno", attending: true },
-  { name: "Isleia", attending: true },
+  { name: "Rosângela", attending: true },
+  { name: "Nilsa", attending: true },
+  { name: "Carlos", attending: true },
 ];

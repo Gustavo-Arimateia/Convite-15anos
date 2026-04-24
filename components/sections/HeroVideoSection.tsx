@@ -1,0 +1,60 @@
+"use client";
+
+import { CalendarDays, MapPin } from "lucide-react";
+import { eventData } from "@/data/event";
+
+export function HeroVideoSection() {
+  return (
+    <section className="hero-video-section">
+      <video
+        className="hero-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster={eventData.videoPoster}
+      >
+        <source src={eventData.videoSrc} type="video/mp4" />
+      </video>
+
+      <div className="hero-overlay" />
+
+      <div className="section-container hero-content-wrapper">
+        <div className="hero-content">
+          <span className="badge-gold">Convite Especial</span>
+
+          <h1 className="hero-title">
+            {eventData.celebrantName}
+            <span className="hero-subtitle">{eventData.subtitle}</span>
+          </h1>
+
+          <p className="hero-description">{eventData.message}</p>
+
+          <div className="hero-actions">
+            <a href="#confirmacao" className="btn-primary">
+              Confirmar Presença
+            </a>
+            <a href="#detalhes-festa" className="btn-secondary">
+              Ver Detalhes
+            </a>
+          </div>
+
+          <div className="hero-meta">
+            <div className="hero-meta-item">
+              <CalendarDays size={18} />
+              <span>
+                {eventData.dateText} • {eventData.timeText}
+              </span>
+            </div>
+
+            <div className="hero-meta-item">
+              <MapPin size={18} />
+              <span>{eventData.venue}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
