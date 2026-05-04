@@ -1,8 +1,7 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
-import { demoFamily, demoPin } from "@/data/event";
-import { FamilyMember } from "@/types/rsvp";
+import { FormEvent, useMemo, useRef, useState } from "react";
+import { AttendanceStatus, FamilyMember } from "@/types/rsvp";
 import { PinForm } from "@/components/rsvp/PinForm";
 import { FamilySelector } from "@/components/rsvp/FamilySelector";
 
@@ -11,40 +10,99 @@ export function RsvpSection() {
   const [pinValidated, setPinValidated] = useState(false);
   const [pinError, setPinError] = useState("");
   const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [loadingInvite, setLoadingInvite] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const [confirmationCompleted, setConfirmationCompleted] = useState(false);
+
+  const resetTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const attendingCount = useMemo(
-    () => familyMembers.filter((member) => member.attending).length,
+    () =>
+      familyMembers.filter((member) => member.status === "confirmado").length,
     [familyMembers]
   );
 
-  function handleValidatePin() {
-    setSuccessMessage("");
-    setPinError("");
+  const notAttendingCount = useMemo(
+    () => familyMembers.filter((member) => member.status === "nao_vai").length,
+    [familyMembers]
+  );
 
-    if (pin.trim() === demoPin) {
-      setPinValidated(true);
-      setFamilyMembers(demoFamily);
-      return;
-    }
+  const pendingCount = useMemo(
+    () => familyMembers.filter((member) => member.status === "pendente").length,
+    [familyMembers]
+  );
 
+  const canSubmit =
+    pinValidated && familyMembers.length > 0 && pendingCount === 0;
+
+  function resetRsvpForm() {
+    setPin("");
     setPinValidated(false);
+    setPinError("");
     setFamilyMembers([]);
-    setPinError("Convite não encontrado. Verifique o PIN informado.");
+    setLoadingInvite(false);
+    setLoadingSubmit(false);
+    setConfirmationCompleted(false);
   }
 
-  function handleToggleMember(index: number, attending: boolean) {
+  async function handleValidatePin() {
+    setPinError("");
+    setPinValidated(false);
+    setFamilyMembers([]);
+    setConfirmationCompleted(false);
+    setLoadingInvite(true);
+
+    if (resetTimerRef.current) {
+      clearTimeout(resetTimerRef.current);
+    }
+
+    try {
+      const response = await fetch("/api/rsvp/lookup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ pin }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Convite não encontrado.");
+      }
+
+      setPinValidated(true);
+      setFamilyMembers(data.familyMembers);
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Erro ao buscar convite.";
+
+      setPinError(message);
+    } finally {
+      setLoadingInvite(false);
+    }
+  }
+
+  function handleToggleMember(memberId: string, status: AttendanceStatus) {
+    setPinError("");
+
     setFamilyMembers((current) =>
-      current.map((member, i) => (i === index ? { ...member, attending } : member))
+      current.map((member) =>
+        member.id === memberId ? { ...member, status } : member
+      )
     );
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
+
+    if (!canSubmit) {
+      setPinError("Confirme se cada pessoa vai ou não vai comparecer.");
+      return;
+    }
+
+    setLoadingSubmit(true);
     setPinError("");
-    setSuccessMessage("");
 
     try {
       const response = await fetch("/api/rsvp", {
@@ -64,16 +122,18 @@ export function RsvpSection() {
         throw new Error(data.message || "Não foi possível enviar a confirmação.");
       }
 
-      setSuccessMessage("Confirmação enviada com sucesso.");
-      setPin("");
-      setPinValidated(false);
-      setFamilyMembers([]);
+      setConfirmationCompleted(true);
+
+      resetTimerRef.current = setTimeout(() => {
+        resetRsvpForm();
+      }, 5000);
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Erro ao enviar confirmação.";
+
       setPinError(message);
     } finally {
-      setLoading(false);
+      setLoadingSubmit(false);
     }
   }
 
@@ -87,37 +147,66 @@ export function RsvpSection() {
           </div>
 
           <div className="confirmation-card glass-card">
-            <PinForm
-              pin={pin}
-              pinError={pinError}
-              onPinChange={setPin}
-              onValidate={handleValidatePin}
-            />
+            {confirmationCompleted ? (
+              <div className="confirmation-completed">
+                <div className="confirmation-completed-icon">✓</div>
 
-            {pinValidated && (
-              <form onSubmit={handleSubmit} className="confirmation-form">
-                <FamilySelector
-                  familyMembers={familyMembers}
-                  attendingCount={attendingCount}
-                  onToggle={handleToggleMember}
-                />
+                <h3 className="confirmation-completed-title">
+                  Confirmação enviada!
+                </h3>
 
-                <div className="confirmation-footer">
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="btn-primary confirmation-submit-button"
-                  >
-                    {loading ? "Enviando..." : "Finalizar Confirmação"}
-                  </button>
+                <p className="confirmation-completed-text">
+                  Obrigado por confirmar a presença.
+                </p>
+
+                <div className="confirmation-completed-summary">
+                  <p>
+                    Pessoas confirmadas: <strong>{attendingCount}</strong>
+                  </p>
+
+                  <p>
+                    Não comparecerão: <strong>{notAttendingCount}</strong>
+                  </p>
                 </div>
 
-                {successMessage && (
-                  <div className="confirmation-success">
-                    {successMessage}
-                  </div>
+                <p className="confirmation-completed-return">
+                  A tela será reiniciada em alguns segundos.
+                </p>
+              </div>
+            ) : (
+              <>
+                <PinForm
+                  pin={pin}
+                  pinError={pinError}
+                  loading={loadingInvite}
+                  onPinChange={setPin}
+                  onValidate={handleValidatePin}
+                />
+
+                {pinValidated && (
+                  <form onSubmit={handleSubmit} className="confirmation-form">
+                    <FamilySelector
+                      familyMembers={familyMembers}
+                      attendingCount={attendingCount}
+                      notAttendingCount={notAttendingCount}
+                      pendingCount={pendingCount}
+                      onToggle={handleToggleMember}
+                    />
+
+                    <div className="confirmation-footer">
+                      <button
+                        type="submit"
+                        disabled={loadingSubmit || !canSubmit}
+                        className="btn-primary confirmation-submit-button"
+                      >
+                        {loadingSubmit
+                          ? "Enviando..."
+                          : "Finalizar Confirmação"}
+                      </button>
+                    </div>
+                  </form>
                 )}
-              </form>
+              </>
             )}
           </div>
         </div>

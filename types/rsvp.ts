@@ -1,13 +1,7 @@
-export type FamilyMember = {
-  name: string;
-  attending: boolean;
-};
+export type AttendanceStatus = "pendente" | "confirmado" | "nao_vai";
 
-export type RsvpPayload = {
-  pin: string;
-  contactName: string;
-  contactPhone: string;
-  contactEmail: string;
-  notes: string;
-  familyMembers: FamilyMember[];
+export type FamilyMember = {
+  id: string;
+  name: string;
+  status: AttendanceStatus;
 };
