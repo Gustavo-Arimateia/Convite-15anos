@@ -1,5 +1,3 @@
-import { FamilyMember } from "@/types/rsvp";
-
 export const eventData = {
   celebrantName: "Geovana Alexandre de Arimateia",
   subtitle: "celebra seus 15 anos",
@@ -25,11 +23,3 @@ export const eventData = {
   ],
   contactPhone: "(37) 99999-9999",
 };
-
-export const demoPin = "0000";
-
-export const demoFamily: FamilyMember[] = [
-  { name: "Rosângela", attending: true },
-  { name: "Nilsa", attending: true },
-  { name: "Carlos", attending: true },
-];

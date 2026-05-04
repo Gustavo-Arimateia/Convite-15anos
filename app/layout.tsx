@@ -13,8 +13,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Convite de 15 Anos",
-  description: "Convite digital elegante com RSVP",
+  title: "Geovana 15 anos",
+  description: "Convite para os 15 anos de Geovana Alexandre de Arimateia",
 };
 
 export default function RootLayout({
