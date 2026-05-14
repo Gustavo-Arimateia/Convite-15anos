@@ -1,10 +1,6 @@
 export const eventData = {
   celebrantName: "Geovana Alexandre de Arimateia",
   subtitle: "celebra seus 15 anos",
-  dateText: "11 de Julho de 2026",
-  timeText: "22:00",
-  venue: "Imperatriz Festas & Eventos",
-  address: "R. Duarte, 70 - Catalão, Divinópolis - MG, 35501-168",
   googleMapsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=R.+Duarte,+70+-+Catal%C3%A3o,+Divin%C3%B3polis+-+MG,+35501-168",
   wazeUrl:
@@ -22,4 +18,20 @@ export const eventData = {
     "Em caso de dúvida, fale com a organização.",
   ],
   contactPhone: "(37) 99999-9999",
+
+  mass: {
+    title: "Missa em ação de graças",
+    dateText: "03 de Julho de 2026",
+    timeText: "19:00",
+    venue: "Igreja Santa Catarina de Sena",
+    address: "R. Pedro de Oliveira, 1051 - Levindo Paula Pereira, Divinópolis - MG, 35502-051",
+  },
+
+  party: {
+    title: "Festa de 15 anos",
+    dateText: "11 de Julho de 2026",
+    timeText: "22:00",
+    venue: "Imperatriz Festas & Eventos",
+    address: "R. Duarte, 70 - Catalão, Divinópolis - MG, 35501-168",
+  },
 };

@@ -2,7 +2,7 @@ import { MapPin, Navigation } from "lucide-react";
 import { eventData } from "@/data/event";
 
 export function LocationSection() {
-  const embedAddress = encodeURIComponent(eventData.address);
+  const embedAddress = encodeURIComponent(eventData.party.address);
 
   return (
     <section className="location-section">
@@ -16,8 +16,8 @@ export function LocationSection() {
               <div className="location-info-row-v2">
                 <MapPin size={18} />
                 <div>
-                  <strong>{eventData.venue}</strong>
-                  <p>{eventData.address}</p>
+                  <strong>{eventData.party.venue}</strong>
+                  <p>{eventData.party.address}</p>
                 </div>
               </div>
             </div>

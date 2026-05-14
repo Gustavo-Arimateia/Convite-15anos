@@ -12,14 +12,16 @@ export default function HomePage() {
   return (
     <main>
       <HeroVideoSection />
-      <StoryGallerySection />
-      <EventDetailsSection />
-      <DressCodeSection />
-      <LocationSection />
-      <HighlightSection />
-      <InfoSection />
-      <RsvpSection />
-      <ScrollTopButton />
+      <div className="soft-flow-section">
+        <StoryGallerySection />
+        <EventDetailsSection />
+        <DressCodeSection />
+        <LocationSection />
+        <HighlightSection />
+        <InfoSection />
+        <RsvpSection />
+        <ScrollTopButton />
+      </div>
     </main>
   );
 }

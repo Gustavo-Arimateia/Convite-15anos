@@ -21,9 +21,10 @@ export function HeroVideoSection() {
         playsInline
         preload="auto"
         onLoadedData={() => setVideoReady(true)}
+        onPlaying={() => setVideoReady(true)}
         aria-hidden="true"
       >
-        <source src={eventData.videoSrc} type="video/mp4" />
+        <source src="/hero-video.mp4" type="video/mp4" />
       </video>
 
       <div className="hero-overlay" />
@@ -53,13 +54,13 @@ export function HeroVideoSection() {
             <div className="hero-meta-item">
               <CalendarDays size={18} />
               <span>
-                {eventData.dateText} • {eventData.timeText}
+                {eventData.party.dateText} • {eventData.party.timeText}
               </span>
             </div>
 
             <div className="hero-meta-item">
               <MapPin size={18} />
-              <span>{eventData.venue}</span>
+              <span>{eventData.party.venue}</span>
             </div>
           </div>
         </div>
