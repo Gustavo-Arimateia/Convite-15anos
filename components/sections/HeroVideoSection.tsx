@@ -20,11 +20,12 @@ export function HeroVideoSection() {
         loop
         playsInline
         preload="auto"
-        onLoadedData={() => setVideoReady(true)}
+        poster="/videos/hero-poster.webp"
+        onCanPlay={() => setVideoReady(true)}
         onPlaying={() => setVideoReady(true)}
         aria-hidden="true"
       >
-        <source src="/hero-video.mp4" type="video/mp4" />
+        <source src="/videos/hero-video-v1.mp4" type="video/mp4" />
       </video>
 
       <div className="hero-overlay" />
