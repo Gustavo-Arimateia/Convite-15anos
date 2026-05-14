@@ -1,19 +1,27 @@
 "use client";
 
+import { useState } from "react";
 import { CalendarDays, MapPin } from "lucide-react";
 import { eventData } from "@/data/event";
 
 export function HeroVideoSection() {
+  const [videoReady, setVideoReady] = useState(false);
+
   return (
-    <section className="hero-video-section">
+    <section
+      className={`hero-video-section ${videoReady ? "is-video-ready" : ""}`}
+    >
+      <div className="hero-video-placeholder" />
+
       <video
         className="hero-video"
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
-        poster={eventData.videoPoster}
+        preload="auto"
+        onLoadedData={() => setVideoReady(true)}
+        aria-hidden="true"
       >
         <source src={eventData.videoSrc} type="video/mp4" />
       </video>
@@ -22,7 +30,7 @@ export function HeroVideoSection() {
 
       <div className="section-container hero-content-wrapper">
         <div className="hero-content">
-          <span className="badge-gold">Convite Especial</span>
+          <span className="hero-badge">Convite Especial</span>
 
           <h1 className="hero-title">
             {eventData.celebrantName}
@@ -35,6 +43,7 @@ export function HeroVideoSection() {
             <a href="#confirmacao" className="btn-primary">
               Confirmar Presença
             </a>
+
             <a href="#detalhes-festa" className="btn-secondary">
               Ver Detalhes
             </a>
