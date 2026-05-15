@@ -5,17 +5,21 @@ export function DressCodeSection() {
   return (
     <section className="dress-section">
       <div className="section-container">
+        <div className="dress-heading-v3">
+          <span className="badge-gold">Dress Code</span>
+
+          <h2 className="section-title">
+            Elegância,
+            <span>delicadeza e brilho</span>
+          </h2>
+        </div>
+
         <div className="dress-grid-v2">
           <div className="dress-content-v2">
-            <span className="badge-gold">Dress Code</span>
-            <h2 className="section-title">Elegância, delicadeza e brilho</h2>
-            <p className="dress-text-v2">{eventData.dressCodeText}</p>
-
-            <div className="dress-examples-v2">
-              <span className="dress-chip">Vestidos fluidos</span>
-              <span className="dress-chip">Tons suaves</span>
-              <span className="dress-chip">Social elegante</span>
-              <span className="dress-chip">Looks sofisticados</span>
+            <div className="dress-text-v2">
+              {eventData.dressCodeParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </div>
 
