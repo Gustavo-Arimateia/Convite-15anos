@@ -1885,3 +1885,129 @@ a {
     min-height: 280px;
   }
 }
+
+/* ================================
+   INFO - FINAL CONTACT
+================================ */
+
+.info-content {
+  width: 100%;
+}
+
+.info-content .badge-gold {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #a4773a;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.info-content .section-title {
+  margin-top: 0 !important;
+  color: #211916;
+  font-family: var(--font-playfair), serif;
+  font-size: clamp(3rem, 4.8vw, 5rem);
+  line-height: 0.96;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+}
+
+.info-contact-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-contact-header h3 {
+  color: #211916;
+  font-family: var(--font-playfair), serif;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.info-contact-main {
+  width: 100%;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.info-contact-main .info-contact-phone {
+  margin: 0;
+  color: #211916;
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.info-contact-name {
+  margin-top: 8px;
+  color: #6c625d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.info-contact-name strong {
+  color: #211916;
+  font-weight: 700;
+}
+
+.info-whatsapp-button {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 22px;
+  border-radius: 999px;
+  background: #161312;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.info-whatsapp-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.96;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+}
+
+.info-whatsapp-button svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .info-content .badge-gold {
+    margin-bottom: 16px;
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+  }
+
+  .info-content .section-title {
+    font-size: clamp(2.45rem, 11vw, 3.8rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .info-contact-main .info-contact-phone {
+    font-size: 1.25rem;
+  }
+
+  .info-contact-name {
+    font-size: 0.9rem;
+  }
+}

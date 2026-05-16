@@ -27,7 +27,9 @@ export const eventData = {
     "Em caso de dúvida, fale com a organização.",
   ],
 
+  contactName: "Cerimonial Rosa Negra (Vivi)",
   contactPhone: "(37) 99832-2374",
+  contactWhatsapp: "5537998322374",
 
   mass: {
     title: "Missa em ação de graças",
