@@ -23,7 +23,7 @@ export const eventData = {
   infoItems: [
     "Chegue com alguns minutos de antecedência.",
     "Guarde este link para rever informações da festa.",
-    "A confirmação ajuda muito na organização do evento.",
+    "Para que seu nome esteja na portaria é imprescindível que confirme sua presença.",
     "Em caso de dúvida, fale com a organização.",
   ],
 
