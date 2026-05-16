@@ -2011,3 +2011,59 @@ a {
     font-size: 0.9rem;
   }
 }
+
+/* ================================
+   CONFIRMATION - TITLE STYLE
+================================ */
+
+.confirmation-section .section-heading {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.confirmation-section .badge-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #a4773a;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.confirmation-section .section-title {
+  margin: 0;
+  color: #211916;
+  font-family: var(--font-playfair), serif;
+  font-size: clamp(3rem, 5.4vw, 5.8rem);
+  line-height: 0.96;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+}
+
+@media (max-width: 768px) {
+  .confirmation-section .badge-gold {
+    margin-bottom: 16px;
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+  }
+
+  .confirmation-section .section-title {
+    font-size: clamp(2.45rem, 11vw, 3.8rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+}
+
+@media (max-width: 520px) {
+  .confirmation-section .section-title {
+    font-size: clamp(2.35rem, 12vw, 3.3rem);
+  }
+}
